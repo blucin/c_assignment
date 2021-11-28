@@ -1,51 +1,31 @@
-#include <stdio.h>
-#include <conio.h>
 #include <math.h>
-
-int firstDigit(int p) {
-    while(p >= 10)
-    {
-        p = p / 10;
-    }
-}
-
-int middleDigit(int q) {
-    // Find total number of digits
-    int digits = (int)log10(q) + 1;
-    // Find middle digit
-    q = (int)(q / pow(10, digits / 2))
-        % 10;
-    // Return middle digit
-    return q;
-}
-
-int lastDigit(int r) {
-    //find last digit and update given input value
-    r = r % 10;
-    return r;
-}
+#include <stdio.h>
 
 int main() 
-{ 
-    int num,digit1,digit2,digit3,multi;
-    
-    printf("Enter the value:  ");
-    scanf("%d",&num);
+{
+   int num, originalNum, remainder, n = 0;
+   float result = 0.0;
 
-    digit1 = firstDigit(num);
-    digit2 = middleDigit(num);
-    digit3 = lastDigit(num);
+   printf("Enter an integer: ");
+   scanf("%d", &num);
 
-    printf("\ndigit1= %d",digit1);
-    printf("\ndigit2= %d",digit2);
-    printf("\ndigit3= %d",digit3);
-    
-    multi = digit1*digit1*digit1 + digit2*digit2*digit2 + digit3*digit3*digit3;
-    printf("\nmulti is %d",multi);
+   originalNum = num;
 
-    if (multi==num) {
-        printf("\nGiven number is an armstrong number");
-    } else {
-        printf("\nGiven number is not an armstrong number");
-    }
+   // store the number of digits of num in n
+   for (originalNum = num; originalNum != 0; ++n) {
+       originalNum /= 10;
+   }
+
+   for (originalNum = num; originalNum != 0; originalNum /= 10) {
+       remainder = originalNum % 10;
+
+      // store the sum of the power of individual digits in result
+      result += pow(remainder, n);
+   }
+
+   if ((int)result == num)
+    printf("%d is an Armstrong number.", num);
+   else
+    printf("%d is not an Armstrong number.", num);
+   return 0;
 }
