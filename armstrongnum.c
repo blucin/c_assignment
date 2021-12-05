@@ -1,31 +1,27 @@
-#include <math.h>
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-int main() 
-{
-   int num, originalNum, remainder, n = 0;
-   float result = 0.0;
+int main () {
+  char input [2];
 
-   printf("Enter an integer: ");
-   scanf("%d", &num);
+  printf("Enter your number: ");
+  scanf("%s",input);
 
-   originalNum = num;
+  //convert whole string to int num
+  int num = atoi(input);
 
-   // store the number of digits of num in n
-   for (originalNum = num; originalNum != 0; ++n) {
-       originalNum /= 10;
-   }
+  //convert individual ASCII char to int value
+  int digit1 = input[0] - '0';
+  int digit2 = input[1] - '0';
+  int digit3 = input[2] - '0';
 
-   for (originalNum = num; originalNum != 0; originalNum /= 10) {
-       remainder = originalNum % 10;
+  int multi = digit1*digit1*digit1 + digit2*digit2*digit2 + digit3*digit3*digit3;
 
-      // store the sum of the power of individual digits in result
-      result += pow(remainder, n);
-   }
+    if (multi==num) {
+        printf("\nGiven number is an armstrong number");
+    } else {
+        printf("\nGiven number is not an armstrong number");
+    }
 
-   if ((int)result == num)
-    printf("%d is an Armstrong number.", num);
-   else
-    printf("%d is not an Armstrong number.", num);
-   return 0;
+return 0;
 }
